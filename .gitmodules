@@ -1,0 +1,3 @@
+[submodule "noto-fonts"]
+	path = noto-fonts
+	url = https://github.com/googlei18n/noto-fonts
