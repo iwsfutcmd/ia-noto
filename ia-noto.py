@@ -16,7 +16,10 @@ except FileNotFoundError:
 
 searchpaths = [
     "noto-fonts/phaseIII_only/unhinted/ttf/**/*.ttf",
+    "noto-fonts/phaseIII_only/unhinted/variable-ttf/**/*.ttf",
     "noto-fonts/unhinted/**/*.ttf",
+    "noto-fonts/alpha/**/*.ttf",
+    "noto-cjk/**/*.otf",
 ]
 
 fileset = set()
@@ -31,16 +34,17 @@ for searchpath in searchpaths:
             pathset.add(path)
             fileset.add(filename)
 
-for path in tqdm(pathset):
+for path in tqdm(sorted(pathset)):
     filename = path.name
-    print(filename)
     file = open(path, "rb").read()
     hash = md5(file).hexdigest()
     try:
         if hashdict[filename] == hash:
+            print("SKIPPING: " + filename)
             continue
     except KeyError:
         pass
+    print("WORKING: " + filename)
     ttf = TTFont(path)
     ttf.flavor = "woff2"
     woff2_path = "upload/" + path.with_suffix(".woff2").name
