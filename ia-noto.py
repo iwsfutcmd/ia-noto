@@ -3,8 +3,9 @@ import json
 from pathlib import Path
 from hashlib import md5
 from shutil import copy
+from os import remove
 
-from fontTools.ttLib import TTFont
+from fontTools.ttLib import TTFont, TTLibError
 from internetarchive import upload
 from tqdm import tqdm
 from internetarchive import upload
@@ -20,6 +21,7 @@ searchpaths = [
     "noto-fonts/unhinted/**/*.ttf",
     "noto-fonts/alpha/**/*.ttf",
     "noto-cjk/**/*.otf",
+    "noto-emoji/fonts/**/*.ttf"
 ]
 
 fileset = set()
@@ -45,17 +47,22 @@ for path in tqdm(sorted(pathset)):
     except KeyError:
         pass
     print("WORKING: " + filename)
+    upload_paths = []
     ttf = TTFont(path)
     ttf.flavor = "woff2"
     woff2_path = "upload/" + path.with_suffix(".woff2").name
-    ttf.save(open(woff2_path, "wb"))
+    try:
+        ttf.save(open(woff2_path, "wb"))
+        upload_paths.append(woff2_path)
+    except TTLibError:
+        print("could not convert to woff2")
     ttf.flavor = "woff"
     woff_path = "upload/" + path.with_suffix(".woff").name
     ttf.save(open(woff_path, "wb"))
-    ttf_path = "upload/" + path.name
-    copy(path, "upload")
-    r = upload("NotoFonts", files=[woff2_path, woff_path, ttf_path])
+    upload_paths.append(woff_path)
+    r = upload("NotoFonts", files=[*upload_paths, str(path)])
     if all([c.status_code == 200 for c in r]):
         hashdict[filename] = hash
-    json.dump(hashdict, open("hashdict.json", "w"))
-
+        json.dump(hashdict, open("hashdict.json", "w"))
+    for upath in [woff2_path, woff_path]:
+        remove(upath)

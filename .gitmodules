@@ -4,3 +4,6 @@
 [submodule "noto-cjk"]
 	path = noto-cjk
 	url = https://github.com/googlefonts/noto-cjk
+[submodule "noto-emoji"]
+	path = noto-emoji
+	url = https://github.com/googlefonts/noto-emoji
