@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 from hashlib import md5
 from shutil import copy
-from os import remove
+from os import remove, mkdir
 
 from fontTools.ttLib import TTFont, TTLibError
 from internetarchive import upload
@@ -14,6 +14,11 @@ try:
     hashdict = json.load(open("hashdict.json"))
 except FileNotFoundError:
     hashdict = {}
+
+try:
+    mkdir("upload")
+except FileExistsError:
+    pass
 
 searchpaths = [
     "noto-fonts/phaseIII_only/unhinted/ttf/**/*.ttf",
