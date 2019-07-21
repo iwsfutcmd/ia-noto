@@ -6,14 +6,9 @@ from shutil import copy
 from os import remove, mkdir
 
 from fontTools.ttLib import TTFont, TTLibError
-from internetarchive import upload
+from internetarchive import upload, download, get_item
+from requests.exceptions import HTTPError
 from tqdm import tqdm
-from internetarchive import upload
-
-try:
-    hashdict = json.load(open("hashdict.json"))
-except FileNotFoundError:
-    hashdict = {}
 
 try:
     mkdir("upload")
@@ -41,6 +36,9 @@ for searchpath in searchpaths:
             pathset.add(path)
             fileset.add(filename)
 
+item = get_item("NotoFonts")
+hashdict = {f["name"]: f["md5"] for f in item.files}
+
 for path in tqdm(sorted(pathset)):
     filename = path.name
     file = open(path, "rb").read()
@@ -54,6 +52,7 @@ for path in tqdm(sorted(pathset)):
     print("WORKING: " + filename)
     upload_paths = []
     ttf = TTFont(path)
+    print("  CONVERTING TO woff2...")
     ttf.flavor = "woff2"
     woff2_path = "upload/" + path.with_suffix(".woff2").name
     try:
@@ -61,13 +60,16 @@ for path in tqdm(sorted(pathset)):
         upload_paths.append(woff2_path)
     except TTLibError:
         print("could not convert to woff2")
+    print("  CONVERTING TO woff...")
     ttf.flavor = "woff"
     woff_path = "upload/" + path.with_suffix(".woff").name
     ttf.save(open(woff_path, "wb"))
     upload_paths.append(woff_path)
-    r = upload("NotoFonts", files=[*upload_paths, str(path)])
-    if all([c.status_code == 200 for c in r]):
-        hashdict[filename] = hash
-        json.dump(hashdict, open("hashdict.json", "w"))
+    print("  UPLOADING...")
+    try:
+        r = upload("NotoFonts", files=[*upload_paths, str(path)])
+    except HTTPError:
+        print("  UPLOAD FAILED. TRYING AGAIN...")
+        r = upload("NotoFonts", files=[*upload_paths, str(path)])
     for upath in [woff2_path, woff_path]:
         remove(upath)
