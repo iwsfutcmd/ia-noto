@@ -13,7 +13,6 @@ idna==2.8
 internetarchive==1.8.4
 jsonpatch==1.23
 jsonpointer==2.0
-pkg-resources==0.0.0
 requests==2.21.0
 schema==0.7.0
 six==1.12.0
