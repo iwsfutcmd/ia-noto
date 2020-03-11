@@ -1,5 +1,4 @@
 from glob import glob
-import json
 from pathlib import Path
 from hashlib import md5
 from shutil import copy

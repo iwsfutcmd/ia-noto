@@ -1,9 +1,0 @@
-[submodule "noto-fonts"]
-	path = noto-fonts
-	url = https://github.com/googlei18n/noto-fonts
-[submodule "noto-cjk"]
-	path = noto-cjk
-	url = https://github.com/googlefonts/noto-cjk
-[submodule "noto-emoji"]
-	path = noto-emoji
-	url = https://github.com/googlefonts/noto-emoji
