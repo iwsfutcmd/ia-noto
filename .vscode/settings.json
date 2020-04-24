@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "/home/yang/.virtualenvs/ia-noto/bin/python"
+    "python.pythonPath": "/home/iwsfutcmd/.virtualenvs/ia-noto/bin/python3",
+    "python.formatting.provider": "black"
 }

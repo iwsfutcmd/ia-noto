@@ -7,3 +7,6 @@
 [submodule "noto-emoji"]
 	path = noto-emoji
 	url = https://github.com/googlefonts/noto-emoji
+[submodule "noto-source"]
+	path = noto-source
+	url = https://github.com/googlefonts/noto-source
