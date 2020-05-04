@@ -1,13 +1,14 @@
 Noto Serif
 Noto Serif Armenian
 Noto Serif Georgian
-Noto Sans Georgian
-Noto Sans Arabic
 Noto Naskh Arabic
 Noto Sans Syriac
 Noto Serif Hebrew
 Noto Serif Ethiopic
 Noto Sans Coptic
+Noto Sans Mayan Numerals
+Noto Sans Symbols
+Noto Sans Symbols2
 Noto Serif TC
 Noto Serif SC
 Noto Serif JP
@@ -90,7 +91,7 @@ Noto Sans Tagalog
 Noto Sans Hanunoo
 Noto Sans Buhid
 Noto Sans Tagbanwa
-Noto Sans Nushu
+Noto Traditional Nushu
 Noto Serif Tangut
 Noto Sans Brahmi
 Noto Sans Sharada
@@ -158,18 +159,15 @@ Noto Sans Lydian
 Noto Sans Carian
 Noto Sans Lycian
 Noto Sans Elbasan
-Noto Sans Mayan Numerals
 Noto Sans Tamil Supplement
-Noto Sans Symbols
-Noto Sans Symbols2
 Noto Music
 Noto Sans Math
 Noto Sans Historic
-NotoSerifTamilSlanted
 Noto Serif Tamil Slanted
 Noto Sans
 Noto Sans Armenian
 Noto Sans Georgian
+Noto Sans Arabic
 Noto Nastaliq Urdu
 Noto Sans Hebrew
 Noto Sans Ethiopic
@@ -195,6 +193,7 @@ Noto Sans Tamil
 Noto Sans Gurmukhi
 Noto Sans Gujarati
 Noto Sans Adlam Unjoined
+Noto Sans Nushu
 Noto Sans Grantha
 Noto Kufi Arabic
 Noto Rashi Hebrew

@@ -4,6 +4,7 @@ from hashlib import md5
 from shutil import copy
 from os import remove, mkdir
 from collections import defaultdict
+from sys import argv
 
 from fontTools.ttLib import TTFont, TTLibError
 from internetarchive import upload, download, get_item
@@ -15,6 +16,11 @@ try:
 except FileExistsError:
     pass
 
+manual_override = [
+    "noto-source/instance_ttf/NotoSansAdlam-*.ttf",
+    "noto-fonts/unhinted/NotoSansOriya**/*.ttf",
+]
+
 searchpaths = [
     "noto-fonts/phaseIII_only/unhinted/ttf/**/*.ttf",
     "noto-fonts/phaseIII_only/unhinted/variable-ttf/**/*.ttf",
@@ -22,12 +28,13 @@ searchpaths = [
     "noto-fonts/alpha/**/*.ttf",
     "noto-cjk/**/*.otf",
     "noto-emoji/fonts/**/*.ttf",
-    "noto-source/variable-ttf/**/*.ttf",
+    "noto-source/instance_ttf/**/*.ttf"
+    "noto-source/variable_ttf/**/*.ttf",
 ]
 
 fileset = set()
 pathset = set()
-for searchpath in searchpaths:
+for searchpath in manual_override + searchpaths:
     for filepath in glob(searchpath, recursive=True):
         path = Path(filepath)
         filename = path.name
@@ -37,20 +44,24 @@ for searchpath in searchpaths:
             pathset.add(path)
             fileset.add(filename)
 
-def upload_to_ia():
+
+def upload_to_ia(force=set()):
     item = get_item("NotoFonts")
     hashdict = {f["name"]: f["md5"] for f in item.files}
 
+    fonts_modified = False
     for path in tqdm(sorted(pathset)):
         filename = path.name
         file = open(path, "rb").read()
         hash = md5(file).hexdigest()
-        try:
-            if hashdict[filename] == hash:
-                print("SKIPPING: " + filename)
-                continue
-        except KeyError:
-            pass
+        if "fonts" not in force:
+            try:
+                if hashdict[filename] == hash:
+                    print("SKIPPING: " + filename)
+                    continue
+            except KeyError:
+                pass
+        fonts_modified = True
         print("WORKING: " + filename)
         upload_paths = []
         ttf = TTFont(path)
@@ -75,7 +86,19 @@ def upload_to_ia():
             r = upload("NotoFonts", files=[*upload_paths, str(path)])
         for upath in [woff2_path, woff_path]:
             remove(upath)
+    if "css" in force or fonts_modified:
+        from generate_css import build_all_css
+
+        print("  GENERATING CSS...")
+        build_all_css()
+        css_files = glob("*.css")
+        print("  UPLOADING...")
+        try:
+            r = upload("NotoFonts", files=css_files)
+        except HTTPError:
+            print("  UPLOAD FAILED. TRYING AGAIN...")
+            r = upload("NotoFonts", files=css_files)
 
 
 if __name__ == "__main__":
-    upload_to_ia()
+    upload_to_ia(force=set(argv[1:]))
