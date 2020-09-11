@@ -7,7 +7,7 @@ from collections import defaultdict
 from sys import argv
 
 from fontTools.ttLib import TTFont, TTLibError
-from internetarchive import upload, download, get_item
+from internetarchive import upload, get_item, get_session
 from requests.exceptions import HTTPError
 from tqdm import tqdm
 
@@ -17,8 +17,10 @@ except FileExistsError:
     pass
 
 manual_override = [
-    "noto-source/instance_ttf/NotoSansAdlam-*.ttf",
-    "noto-fonts/unhinted/NotoSansOriya**/*.ttf",
+    # "noto-source/instance_ttf/NotoSansAdlam-*.ttf",
+    # "noto-source/variable_ttf/NotoSansAdlam-VF.ttf",
+    # "noto-source/instance_ttf/NotoSansOriya*.ttf",
+    # "noto-source/variable_ttf/NotoSansOriya*-VF.ttf",
 ]
 
 searchpaths = [
@@ -46,7 +48,8 @@ for searchpath in manual_override + searchpaths:
 
 
 def upload_to_ia(force=set()):
-    item = get_item("NotoFonts")
+    s = get_session()
+    item = s.get_item("NotoFonts")
     hashdict = {f["name"]: f["md5"] for f in item.files}
 
     fonts_modified = False
@@ -79,11 +82,7 @@ def upload_to_ia(force=set()):
         ttf.save(open(woff_path, "wb"))
         upload_paths.append(woff_path)
         print("  UPLOADING...")
-        try:
-            r = upload("NotoFonts", files=[*upload_paths, str(path)])
-        except HTTPError:
-            print("  UPLOAD FAILED. TRYING AGAIN...")
-            r = upload("NotoFonts", files=[*upload_paths, str(path)])
+        r = item.upload(files=[*upload_paths, str(path)], retries=100)
         for upath in [woff2_path, woff_path]:
             remove(upath)
     if "css" in force or fonts_modified:
@@ -92,13 +91,19 @@ def upload_to_ia(force=set()):
         print("  GENERATING CSS...")
         build_all_css()
         css_files = glob("*.css")
-        print("  UPLOADING...")
-        try:
-            r = upload("NotoFonts", files=css_files)
-        except HTTPError:
-            print("  UPLOAD FAILED. TRYING AGAIN...")
-            r = upload("NotoFonts", files=css_files)
-
+        for path in [Path(p) for p in sorted(css_files)]:
+            filename = path.name
+            file = open(path, "rb").read()
+            hash = md5(file).hexdigest()
+            if "css" not in force:
+                try:
+                    if hashdict[filename] == hash:
+                        print("SKIPPING: " + filename)
+                        continue
+                except KeyError:
+                    pass
+            print("  UPLOADING " + filename)
+            r = item.upload(files=css_files, retries=100)
 
 if __name__ == "__main__":
     upload_to_ia(force=set(argv[1:]))

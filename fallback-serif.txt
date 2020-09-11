@@ -64,6 +64,7 @@ Noto Sans Tai Le
 Noto Sans Tai Viet
 Noto Sans New Tai Lue
 Noto Sans Pahawh Hmong
+Noto Serif Nyiakeng Puachue Hmong
 Noto Serif Ahom
 Noto Sans Pau Cin Hau
 Noto Sans Cherokee
@@ -197,6 +198,7 @@ Noto Sans Nushu
 Noto Sans Grantha
 Noto Kufi Arabic
 Noto Rashi Hebrew
+Noto Mono
 Noto Sans Mono
 Noto Sans Mono CJK TC
 Noto Sans Mono CJK SC

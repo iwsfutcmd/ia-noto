@@ -13,6 +13,7 @@ family_fixer = {
     "Noto Sans MeeteiMayek": "Noto Sans Meetei Mayek",
     "Noto Sans PauCinHau": "Noto Sans Pau Cin Hau",
     "NotoSerifTamilSlanted": "Noto Serif Tamil Slanted",
+    "Noto Serif Hmong Nyiakeng": "Noto Serif Nyiakeng Puachue Hmong",
 }
 
 
