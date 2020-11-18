@@ -24,10 +24,8 @@ manual_override = [
 ]
 
 searchpaths = [
-    "noto-fonts/phaseIII_only/unhinted/ttf/**/*.ttf",
-    "noto-fonts/phaseIII_only/unhinted/variable-ttf/**/*.ttf",
-    "noto-fonts/unhinted/**/*.ttf",
-    "noto-fonts/alpha/**/*.ttf",
+    "noto-fonts/unhinted/ttf/**/*.ttf",
+    "noto-fonts/unhinted/variable-ttf/*.ttf",
     "noto-cjk/**/*.otf",
     "noto-emoji/fonts/**/*.ttf",
     "noto-source/instance_ttf/**/*.ttf"
@@ -95,13 +93,13 @@ def upload_to_ia(force=set()):
             filename = path.name
             file = open(path, "rb").read()
             hash = md5(file).hexdigest()
-            if "css" not in force:
-                try:
-                    if hashdict[filename] == hash:
-                        print("SKIPPING: " + filename)
-                        continue
-                except KeyError:
-                    pass
+            # if "css" not in force:
+            try:
+                if hashdict[filename] == hash:
+                    print("SKIPPING: " + filename)
+                    continue
+            except KeyError:
+                pass
             print("  UPLOADING " + filename)
             r = item.upload(files=css_files, retries=100)
 

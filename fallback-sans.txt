@@ -84,7 +84,7 @@ Noto Sans Yi
 Noto Sans Miao
 Noto Sans Mro
 Noto Sans Javanese
-Noto Serif Balinese
+Noto Sans Balinese
 Noto Sans Buginese
 Noto Sans Batak
 Noto Sans Rejang
@@ -119,6 +119,7 @@ Noto Sans Nabataean
 Noto Sans Palmyrene
 Noto Sans Indic Siyaq Numbers
 Noto Sans Mongolian
+Noto Serif Yezidi
 Noto Sans Grantha
 Noto Sans Shavian
 Noto Sans Duployan
@@ -162,6 +163,7 @@ Noto Sans Carian
 Noto Sans Lycian
 Noto Sans Elbasan
 Noto Sans Tamil Supplement
+Noto Sans Medefaidrin
 Noto Music
 Noto Sans Math
 Noto Sans Historic
@@ -192,6 +194,7 @@ Noto Serif Malayalam
 Noto Serif Tamil
 Noto Serif Gurmukhi
 Noto Serif Gujarati
+Noto Serif Balinese
 Noto Sans Adlam Unjoined
 Noto Traditional Nushu
 Noto Serif Grantha

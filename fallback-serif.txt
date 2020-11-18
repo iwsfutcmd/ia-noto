@@ -118,6 +118,7 @@ Noto Sans Nabataean
 Noto Sans Palmyrene
 Noto Sans Indic Siyaq Numbers
 Noto Sans Mongolian
+Noto Serif Yezidi
 Noto Serif Grantha
 Noto Sans Shavian
 Noto Sans Duployan
@@ -161,6 +162,7 @@ Noto Sans Carian
 Noto Sans Lycian
 Noto Sans Elbasan
 Noto Sans Tamil Supplement
+Noto Sans Medefaidrin
 Noto Music
 Noto Sans Math
 Noto Sans Historic
@@ -193,6 +195,7 @@ Noto Sans Malayalam
 Noto Sans Tamil
 Noto Sans Gurmukhi
 Noto Sans Gujarati
+Noto Sans Balinese
 Noto Sans Adlam Unjoined
 Noto Sans Nushu
 Noto Sans Grantha
