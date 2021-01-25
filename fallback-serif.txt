@@ -97,7 +97,7 @@ Noto Serif Tangut
 Noto Sans Brahmi
 Noto Sans Sharada
 Noto Sans Modi
-Noto Sans Khojki
+Noto Serif Khojki
 Noto Sans Multani
 Noto Sans Tirhuta
 Noto Sans Kaithi
@@ -163,6 +163,7 @@ Noto Sans Lycian
 Noto Sans Elbasan
 Noto Sans Tamil Supplement
 Noto Sans Medefaidrin
+Noto Sans SignWriting
 Noto Music
 Noto Sans Math
 Noto Sans Historic
@@ -182,9 +183,12 @@ Noto Sans CJK TC
 Noto Sans CJK SC
 Noto Sans CJK JP
 Noto Sans CJK KR
+Noto Looped Thai
+Noto Looped Thai
 Noto Sans Thai
 Noto Sans Myanmar
 Noto Sans Khmer
+Noto Looped Lao
 Noto Sans Lao
 Noto Sans Devanagari
 Noto Sans Bengali
@@ -196,6 +200,7 @@ Noto Sans Tamil
 Noto Sans Gurmukhi
 Noto Sans Gujarati
 Noto Sans Balinese
+Noto Sans Khojki
 Noto Sans Adlam Unjoined
 Noto Sans Nushu
 Noto Sans Grantha
@@ -210,9 +215,11 @@ Noto Sans Mono CJK HK
 Noto Sans Mono CJK KR
 Noto Sans Arabic UI
 Noto Naskh Arabic UI
+Noto Looped Thai UI
 Noto Sans Thai UI
 Noto Sans Myanmar UI
 Noto Sans Khmer UI
+Noto Looped Lao UI
 Noto Sans Lao UI
 Noto Sans Devanagari UI
 Noto Sans Bengali UI

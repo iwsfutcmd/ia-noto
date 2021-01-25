@@ -16,6 +16,8 @@ try:
 except FileExistsError:
     pass
 
+NOTO_PATH = Path("..")
+
 manual_override = [
     # "noto-source/instance_ttf/NotoSansAdlam-*.ttf",
     # "noto-source/variable_ttf/NotoSansAdlam-VF.ttf",
@@ -23,19 +25,29 @@ manual_override = [
     # "noto-source/variable_ttf/NotoSansOriya*-VF.ttf",
 ]
 
+# searchpaths = [
+#     "noto-fonts/unhinted/ttf/**/*.ttf",
+#     "noto-fonts/unhinted/variable-ttf/*.ttf",
+#     "noto-cjk/**/*.otf",
+#     "noto-emoji/fonts/**/*.ttf",
+#     "noto-source/instance_ttf/**/*.ttf"
+#     "noto-source/variable_ttf/**/*.ttf",
+# ]
+
 searchpaths = [
-    "noto-fonts/unhinted/ttf/**/*.ttf",
-    "noto-fonts/unhinted/variable-ttf/*.ttf",
-    "noto-cjk/**/*.otf",
-    "noto-emoji/fonts/**/*.ttf",
-    "noto-source/instance_ttf/**/*.ttf"
-    "noto-source/variable_ttf/**/*.ttf",
+    NOTO_PATH / "noto-fonts" / "unhinted" / "ttf" / "**" / "*.ttf",
+    NOTO_PATH / "noto-fonts" / "unhinted" / "variable-ttf" / "*.ttf",
+    NOTO_PATH / "noto-cjk" / "**" / "*.ttf",
+    NOTO_PATH / "noto-emoji" / "fonts" / "**" / "*.ttf",
+    NOTO_PATH / "noto-source" / "instance_ttf" / "**" / "*.ttf",
+    NOTO_PATH / "noto-source" / "variable_ttf" / "**" / "*.ttf",
+
 ]
 
 fileset = set()
 pathset = set()
 for searchpath in manual_override + searchpaths:
-    for filepath in glob(searchpath, recursive=True):
+    for filepath in glob(str(searchpath), recursive=True):
         path = Path(filepath)
         filename = path.name
         if filename in fileset:

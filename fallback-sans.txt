@@ -32,11 +32,11 @@ Noto Sans Tifinagh Hawad
 Noto Sans Tifinagh Rhissa Ixa
 Noto Sans Tifinagh SIL
 Noto Sans Tifinagh Tawellemmet
-Noto Sans Thai
+Noto Looped Thai
 Noto Sans Kayah Li
 Noto Sans Myanmar
 Noto Sans Khmer
-Noto Sans Lao
+Noto Looped Lao
 Noto Sans Cham
 Noto Sans Devanagari
 Noto Sans Bengali
@@ -164,9 +164,12 @@ Noto Sans Lycian
 Noto Sans Elbasan
 Noto Sans Tamil Supplement
 Noto Sans Medefaidrin
+Noto Sans SignWriting
 Noto Music
 Noto Sans Math
 Noto Sans Historic
+Noto Sans Thai
+Noto Sans Lao
 Noto Serif
 Noto Serif Armenian
 Noto Serif Georgian
@@ -195,6 +198,7 @@ Noto Serif Tamil
 Noto Serif Gurmukhi
 Noto Serif Gujarati
 Noto Serif Balinese
+Noto Serif Khojki
 Noto Sans Adlam Unjoined
 Noto Traditional Nushu
 Noto Serif Grantha
@@ -210,9 +214,11 @@ Noto Sans Mono CJK HK
 Noto Sans Mono CJK KR
 Noto Sans Arabic UI
 Noto Naskh Arabic UI
+Noto Looped Thai UI
 Noto Sans Thai UI
 Noto Sans Myanmar UI
 Noto Sans Khmer UI
+Noto Looped Lao UI
 Noto Sans Lao UI
 Noto Sans Devanagari UI
 Noto Sans Bengali UI
